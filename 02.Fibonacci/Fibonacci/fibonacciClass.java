@@ -46,13 +46,6 @@ public class fibonacciClass {
 	
 	*/
 	
-	static int [] f = new int[100]; //배열 생성시 0으로 초기화 됨, 배열요소는 자동적으로 int의 기본값(default)인 0으로 초기화 된다. 
-
-	/*
-	for(int i; i < f.length; i++) { //초기화할 필요 없음 
-		f[i] = 0;
-	}
-	*/
 	
 	static int fibonacci (int n) {
 		/*
@@ -74,7 +67,6 @@ public class fibonacciClass {
 		  ...
 		  
 		 */
-	
 		
 		if(f[n]!=0) { //f[1] = 1 경우, 처음으로 돌아왔을 때, 
 			return f[n];
@@ -86,11 +78,8 @@ public class fibonacciClass {
 			}
 			else {
 				f[n] = fibonacci(n-1) + fibonacci(n-2);
-				
-				/*System.out.println("f[n] : " +  f[n]);
-				System.out.println( "input : "  + n);
-				if( (f[n] < n ) && (f[n] % 2 == 0)) System.out.println("Output : " + f[n]); //2만 찍
-				 */				
+				//System.out.println("f[n] : " +  f[n]);
+					
 			}
 			
 			return f[n];
@@ -99,6 +88,7 @@ public class fibonacciClass {
 	}
 	
 	
+	static int [] f;
 	public static void main(String[] args) {
 		
 		System.out.print("Input : ");
@@ -106,18 +96,20 @@ public class fibonacciClass {
 		Scanner sc = new Scanner(System.in);
 		int input = sc.nextInt();
 
+		f = new int[input]; //배열 생성시 0으로 초기화 됨, 배열요소는 자동적으로 int의 기본값(default)인 0으로 초기화 된다. 
+		
 		System.out.println("Input : N = " + input);
 		
 		int sum = 0;
 		
-		for(int i = 1; i< input; i++ ) { 
+		for(int i = 1; fibonacci(i) < input; i++ ) { 
+			//System.out.println("i : " + i);
 			
-			int odd = fibonacci(i);
+			int tmp = fibonacci(i);
 			
-			
-			if( (odd < input) && (odd % 2 == 0)) {
+			if( (tmp < input) && (tmp % 2 == 0)) {
 				//System.out.println("짝수 : " + odd);
-				sum += odd;
+				sum += tmp;
 			}
 		
 		}
@@ -134,6 +126,11 @@ public class fibonacciClass {
 		 	Input : 35
 			Input : N = 35
 			Output : 44
+			
+			Input : 145
+			Input : N = 145
+			Output : 188
+
 		 
 		 * 
 		 * */
